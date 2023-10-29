@@ -1,33 +1,9 @@
 # Impor modul Tkinter
 import tkinter as tk
 
-# Fungsi untuk mendekripsi teks dengan geseran tertentu
-def dekripsi(teks, geseran):
-    # Variabel untuk menyimpan hasil dekripsi
-    hasil = ""
-    # Mengubah teks menjadi huruf kecil
-    teks = teks.lower()
-    # Melakukan iterasi untuk setiap karakter di teks
-    for karakter in teks:
-        # Jika karakter adalah huruf alfabet
-        if karakter.isalpha():
-            # Menghitung kode ASCII dari karakter
-            kode = ord(karakter)
-            # Menggeser kode sebanyak geseran ke kiri
-            kode = kode - geseran
-            # Jika kode kurang dari 97 (kode ASCII dari 'a')
-            if kode < 97:
-                # Menambahkan 26 agar tetap dalam rentang alfabet
-                kode = kode + 26
-            # Mengubah kode menjadi karakter dan menambahkan ke hasil
-            hasil = hasil + chr(kode)
-        else:
-            # Jika karakter bukan huruf alfabet, menambahkan karakter tanpa mengubahnya
-            hasil = hasil + karakter
-    # Mengembalikan hasil dekripsi
-    return hasil
-
 # Fungsi untuk melakukan enkripsi dengan metode Caesar Cipher
+
+
 def enkripsi(teks, geseran):
     # Variabel untuk menyimpan hasil enkripsi
     hasil = ""
@@ -53,10 +29,40 @@ def enkripsi(teks, geseran):
     # Mengembalikan hasil enkripsi
     return hasil
 
+# Fungsi untuk mendekripsi teks dengan geseran tertentu
+
+
+def dekripsi(teks, geseran):
+    # Variabel untuk menyimpan hasil dekripsi
+    hasil = ""
+    # Mengubah teks menjadi huruf kecil
+    teks = teks.lower()
+    # Melakukan iterasi untuk setiap karakter di teks
+    for karakter in teks:
+        # Jika karakter adalah huruf alfabet
+        if karakter.isalpha():
+            # Menghitung kode ASCII dari karakter
+            kode = ord(karakter)
+            # Menggeser kode sebanyak geseran ke kiri
+            kode = kode - geseran
+            # Jika kode kurang dari 97 (kode ASCII dari 'a')
+            if kode < 97:
+                # Menambahkan 26 agar tetap dalam rentang alfabet
+                kode = kode + 26
+            # Mengubah kode menjadi karakter dan menambahkan ke hasil
+            hasil = hasil + chr(kode)
+        else:
+            # Jika karakter bukan huruf alfabet, menambahkan karakter tanpa mengubahnya
+            hasil = hasil + karakter
+    # Mengembalikan hasil dekripsi
+    return hasil
+
 # Fungsi yang akan mengeksekusi program saat pengguna menekan tombol "Dekripsi"
+
+
 def dekripsi_tombol():
     # Mendapatkan teks terenkripsi dari kotak teks masukan
-    teks = masukan.get()
+    teks = masukan3.get()
     # Membuat variabel untuk menyimpan semua hasil dekripsi
     semua_hasil = ""
     # Melakukan iterasi untuk setiap kemungkinan geseran dari 1 sampai 25
@@ -66,55 +72,38 @@ def dekripsi_tombol():
         # Menambahkan geseran dan hasil dekripsi ke variabel semua_hasil
         semua_hasil += f"Geseran: {i} Hasil: {hasil}\n"
     # Menampilkan semua hasil dekripsi di kotak teks keluaran
-    keluaran.delete(1.0, tk.END) # Menghapus teks sebelumnya jika ada
-    keluaran.insert(tk.END, semua_hasil) # Menyisipkan teks baru
+    keluaran.delete(1.0, tk.END)  # Menghapus teks sebelumnya jika ada
+    keluaran.insert(tk.END, semua_hasil)  # Menyisipkan teks baru
 
 # Fungsi baru yang akan mengeksekusi fungsi enkripsi saat pengguna menekan tombol "Enkripsi"
+
+
 def enkripsi_tombol():
     # Mendapatkan teks asli dari kotak teks masukan
-    teks = masukan2.get()
+    teks = masukan.get()
     # Mendapatkan geseran yang diinginkan dari kotak teks masukan
-    geseran = int(masukan3.get())
+    geseran = int(masukan1.get())
     # Mendapatkan hasil enkripsi dengan fungsi enkripsi
     hasil = enkripsi(teks, geseran)
     # Menampilkan hasil enkripsi di kotak teks keluaran
-    keluaran2.delete(1.0, tk.END) # Menghapus teks sebelumnya jika ada
-    keluaran2.insert(tk.END, hasil) # Menyisipkan teks baru
+    keluaran2.delete(1.0, tk.END)  # Menghapus teks sebelumnya jika ada
+    keluaran2.insert(tk.END, hasil)  # Menyisipkan teks baru
+
 
 # Buat objek jendela utama
 window = tk.Tk()
 # Beri judul jendela
 window.title("Program Kriptografi Brute Force")
 
-# Buat label dengan teks "Masukkan teks terenkripsi:"
-label = tk.Label(window, text="Masukkan teks terenkripsi:")
-# Tempatkan label di atas jendela
+# Buat label dengan teks "Masukkan teks asli:"
+label = tk.Label(window, text="Masukkan teks asli:")
+# Tempatkan label di bawah kotak teks keluaran
 label.pack()
 
-# Buat kotak teks untuk memasukkan teks terenkripsi
+# Buat kotak teks untuk memasukkan teks asli
 masukan = tk.Entry(window)
 # Tempatkan kotak teks di bawah label
-masukan.pack()
-
-# Buat tombol dengan teks "Dekripsi" dan fungsi dekripsi_tombol
-tombol = tk.Button(window, text="Dekripsi", command=dekripsi_tombol)
-# Tempatkan tombol di bawah kotak teks masukan
-tombol.pack()
-
-# Buat kotak teks untuk menampilkan semua hasil dekripsi
-keluaran = tk.Text(window)
-# Tempatkan kotak teks di bawah tombol
-keluaran.pack()
-
-# Buat label dengan teks "Masukkan teks asli:"
-label2 = tk.Label(window, text="Masukkan teks asli:")
-# Tempatkan label di bawah kotak teks keluaran
-label2.pack()
-
-# Buat kotak teks untuk memasukkan teks asli
-masukan2 = tk.Entry(window)
-# Tempatkan kotak teks di bawah label
-masukan2.pack()
+masukan.pack(ipadx=100, ipady=10)
 
 # Buat label dengan teks "Masukkan geseran:"
 label3 = tk.Label(window, text="Masukkan geseran:")
@@ -122,19 +111,42 @@ label3 = tk.Label(window, text="Masukkan geseran:")
 label3.pack()
 
 # Buat kotak teks untuk memasukkan geseran
-masukan3 = tk.Entry(window)
+masukan1 = tk.Entry(window)
 # Tempatkan kotak teks di bawah label
-masukan3.pack()
+masukan1.pack(ipadx=100, ipady=10)
 
 # Buat tombol dengan teks "Enkripsi" dan fungsi enkripsi_tombol
-tombol2 = tk.Button(window, text="Enkripsi", command=enkripsi_tombol)
+tombol = tk.Button(window, text="Enkripsi", command=enkripsi_tombol,
+                   width=10, height=2, fg="white", bg="red")
 # Tempatkan tombol di bawah kotak teks masukan untuk geseran
-tombol2.pack()
+tombol.pack()
 
 # Buat kotak teks untuk menampilkan hasil enkripsi
-keluaran2 = tk.Text(window)
+keluaran2 = tk.Text(window, width=50, height=5)
+
 # Tempatkan kotak teks di bawah tombol "Enkripsi"
 keluaran2.pack()
+
+# Buat label dengan teks "Masukkan teks terenkripsi:"
+label = tk.Label(window, text="Masukkan teks terenkripsi:")
+# Tempatkan label di atas jendela
+label.pack()
+
+# Buat kotak teks untuk memasukkan teks terenkripsi
+masukan3 = tk.Entry(window)
+# Tempatkan kotak teks di bawah label
+masukan3.pack(ipadx=100, ipady=10)
+
+# Buat tombol dengan teks "Dekripsi" dan fungsi dekripsi_tombol
+tombol2 = tk.Button(window, text="Dekripsi", command=dekripsi_tombol)
+# Tempatkan tombol di bawah kotak teks masukan
+tombol2.pack()
+
+# Buat kotak teks untuk menampilkan semua hasil dekripsi
+keluaran = tk.Text(window)
+# Tempatkan kotak teks di bawah tombol
+keluaran.pack()
+
 
 # Jalankan event loop utama
 window.mainloop()
