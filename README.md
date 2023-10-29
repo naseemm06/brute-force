@@ -1,2 +1,2 @@
 # brute-force
-program untuk dekripsi dan enskripsi
+program untuk dekripsi dan enskripsi brute forece
